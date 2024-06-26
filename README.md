@@ -68,4 +68,9 @@ This section lists major frameworks/libraries used.
    ```js
    uvicorn main:app --reload 
    ```
+5. Visit this path to learn more about the endpoints.
+   ```js
+    http://127.0.0.1:8000/docs#/
+   ```
 <p align="right">(<a href="#top">back to top</a>)</p>
+
