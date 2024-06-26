@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Availability Calendar</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+
+      .calendar {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        grid-gap: 10px;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      .day {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        background-color: #f9f9f9;
+      }
+
+      .day h3 {
+        text-align: center;
+        margin: 0;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #ccc;
+      }
+
+      .time-slot {
+        text-align: center;
+        padding: 5px;
+        margin: 5px 0;
+        background-color: #e0f7fa;
+        border-radius: 3px;
+      }
+
+      .confirmation {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      .confirmation button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .confirmation button:hover {
+        background-color: #45a049;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="calendar">
+      {% for day in availability %}
+      <div class="day">
+        <h3>{{ day.day }}</h3>
+        {% for time in day.available_times %}
+        <div class="time-slot">{{ time.start }} - {{ time.end }}</div>
+        {% endfor %}
+      </div>
+      {% endfor %}
+    </div>
+    <div class="confirmation">
+      <form action="/insert" method="post">
+        <input type="hidden" name="availability" value="{{ availability }}" />
+        <button>Confirm Availability</button>
+      </form>
+    </div>
+  </body>
+</html>
